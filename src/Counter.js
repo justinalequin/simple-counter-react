@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import GreenChecks from "./GreenChecks";
+import RedX from "./RedX";
 
 function Counter() {
   let [counter, setCounter] = useState(0);
@@ -10,6 +12,20 @@ function Counter() {
   const removeFunction = () => {
     setCounter(counter - 1);
   };
+
+  const updateRedX = [];
+  const updateGreenCheck = [];
+  if (counter > 0) {
+    for (let greenCheckKey = 0; greenCheckKey < counter; greenCheckKey++) {
+      updateGreenCheck.push(<GreenChecks key={greenCheckKey} />);
+    }
+  }
+  if (counter < 0) {
+    let newCounter = counter * -1;
+    for (let redXKey = 0; redXKey < newCounter; redXKey++) {
+      updateRedX.push(<RedX key={redXKey} />);
+    }
+  }
 
   return (
     <div className="counterSection">
@@ -24,7 +40,8 @@ function Counter() {
           className="starContainer"
           style={{ backgroundColor: "rgba(0, 0, 0, .7)" }}
         >
-          Hello World
+          {updateGreenCheck}
+          {updateRedX}
         </div>
       </div>
     </div>
